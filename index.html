@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rajdeep Tiwari - Software Engineer</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <div class="cursor-dot"></div>
+
+  <nav>
+    <div class="logo">RT</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section id="home" class="hero">
+    <div class="container">
+      <h1>Rajdeep Tiwari</h1>
+      <h2>Software Engineer | .NET Core Developer</h2>
+      <p class="hero-desc">
+        Results-driven Software Engineer with 2.5+ years of expertise in enterprise solutions,
+        full-stack development, and cloud architecture. Specialized in building scalable applications
+        for Fortune 500 companies and international clients.
+      </p>
+      <div class="cta-buttons">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="container">
+      <h2 class="section-title">Technical Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h3>.NET Technologies</h3>
+          <p>C#, .NET Core, Web API, LINQ, Design Patterns, Entity Framework Core, XUnit Testing</p>
+        </div>
+        <div class="skill-card">
+          <h3>Frontend Development</h3>
+          <p>HTML, CSS, Bootstrap 3/4/5, jQuery, AJAX, JavaScript, ES6/7/8</p>
+        </div>
+        <div class="skill-card">
+          <h3>Database</h3>
+          <p>SQL, MySQL, PL/SQL, Database Design & Optimization</p>
+        </div>
+        <div class="skill-card">
+          <h3>Cloud Services</h3>
+          <p>Azure Function, Azure Active Directory, Azure Storage, Azure Service Bus</p>
+        </div>
+        <div class="skill-card">
+          <h3>Version Control</h3>
+          <p>Azure DevOps, GitHub, GitLab, CI/CD Pipelines</p>
+        </div>
+        <div class="skill-card">
+          <h3>Soft Skills</h3>
+          <p>Self Learner, Strong Communication, Team Leadership, Agile Methodologies</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="container">
+      <h2 class="section-title">Featured Projects</h2>
+      <div class="projects-grid" id="projectsContainer"></div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="container">
+      <h2 class="section-title">Experience</h2>
+      <div class="experience">
+        <h3>.NET Developer, Bigscal Technologies Pvt. Ltd.</h3>
+        <div class="experience-period">2023 – Present | India</div>
+        <ul>
+          <li>Design, develop, and maintain scalable and high-performance .NET Core APIs for various clients, adhering to best coding practices and SOLID principles</li>
+          <li>Integrated applications with Azure services such as Azure Function, Azure SQL Database, Azure Service Bus, and Azure Storage</li>
+          <li>Implement security best practices, including authentication and authorization mechanisms, to protect sensitive data</li>
+          <li>Perform database design, optimization, and administration using MS SQL and MySQL, ensuring data integrity and high availability</li>
+          <li>Actively participate in Agile ceremonies to foster collaboration and adaptability within the team</li>
+          <li>Mentor junior developers and conduct knowledge-sharing sessions to enhance team skills and continuous learning</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="contact-content">
+        <h2 class="section-title">Let's Connect</h2>
+        <p style="color: var(--gray); font-size: 1.2rem; margin-bottom: 2rem;">
+          I'm always open to discussing new projects, creative ideas, or opportunities.
+        </p>
+        <div class="contact-info">
+          <div class="contact-item">
+            <h4>Email</h4>
+            <a href="mailto:rdt2922@gmail.com">rdt2922@gmail.com</a>
+          </div>
+          <div class="contact-item">
+            <h4>Phone</h4>
+            <a href="tel:+919981695406">+91-9981-695406</a>
+          </div>
+          <div class="contact-item">
+            <h4>LinkedIn</h4>
+            <a href="https://linkedin.com/in/rajdeep-tiwari" target="_blank">linkedin.com/in/rajdeep-tiwari</a>
+          </div>
+          <div class="contact-item">
+            <h4>Location</h4>
+            <span>Surat, Gujarat, India</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Rajdeep Tiwari. All rights reserved.</p>
+  </footer>
+
+  <div class="modal" id="projectModal">
+    <div class="modal-content">
+      <button class="close-modal">&times;</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+
+</body>
+
+</html>
