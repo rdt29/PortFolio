@@ -1,16 +1,16 @@
 // Projects Data - Easy to update!
+
+const ROOM_MATIK = "RoomMatik (Spain)";
+const CHENIERE = "Cheniere Energy (US)";
+const BEFREE = "BeFree";
+const GIFTCITY = "Gujarat International Finance Tec-City (GIFT City)";
 const projectsData = [
   {
     title: "Contract Management System",
-    client: "Cheniere Energy (US)",
+    client: CHENIERE,
     type: "Offshore Development",
-    startDate: "2023",
-    technologies: [
-      ".NET Framework 4.5.1",
-      ".NET Core 8",
-      "Azure DevOps",
-      "IIS",
-    ],
+    startDate: "2024",
+    technologies: [".NET Framework 4.5.1", ".NET Core 8", "Azure DevOps"],
     description:
       "Architected and developed a comprehensive contract management system for a Fortune 500 energy company, managing multi-million dollar cargo contracts and commodity-based agreements.",
     achievements: [
@@ -23,7 +23,7 @@ const projectsData = [
   },
   {
     title: "GIFTCity Power Management System",
-    client: "Gujarat International Finance Tec-City (GIFT City)",
+    client: GIFTCITY,
     type: "Government Project",
     startDate: "2023",
     technologies: [".NET Core", "MySQL", "Payment Gateway", "SMS Integration"],
@@ -35,13 +35,31 @@ const projectsData = [
       "Billing Automation: Built end-to-end automated billing module with email and SMS notifications",
       "Payment Integration: Integrated secure payment gateway increasing collection efficiency by 35%",
       "Role-Based Access Control: Implemented sophisticated authentication system for multiple user hierarchies",
+      "Automated Document Generation: Developed automated PDF generation system for technical sanctions, monthly bills and demand estimates, eliminating manual processes and ensuring accuracy ",
+    ],
+  },
+  {
+    title: "Cheniere Capacity Loss Evaluation and Reporting",
+    client: CHENIERE,
+    type: "Offshore Development",
+    startDate: "2025",
+    technologies: [".NET Core", "MySQL", "PI System", "Denodo", "Maximo"],
+    description:
+      "Analytics application built on .NET Core and SQL Server for a Fortune 500 energy company, integrating PI, Denodo, and Maximo to track capacity loss and performance across facilities.",
+    achievements: [
+      "Designed and built a .NET Core backend that connects smoothly with PI, Denodo, and Maximo systems.",
+      "Created a pipeline that pulls data from different sources and transforms it into a consistent, usable format.",
+      "Developed calculation logic to track capacity loss, achievement percentages, and efficiency metrics across facilities and production trains.",
+      "Gave business users clear, near real-time visibility into how operations are performing.",
+      "Optimized SQL queries and backend processes to handle large volumes of historical data without performance issues.",
+      "Delivered a reporting solution that makes it easy for users to evaluate losses and achievements across different operational areas.",
     ],
   },
   {
     title: "Custom Identity Provider (SSO Solution)",
-    client: "BeFree",
+    client: BEFREE,
     type: "Enterprise Authentication",
-    startDate: "2023",
+    startDate: "2025",
     technologies: [
       ".NET Core",
       "React.js",
@@ -61,10 +79,10 @@ const projectsData = [
   },
   {
     title: "Kiosk Management & Auto-Update System",
-    client: "RoomMatik",
+    client: ROOM_MATIK,
     type: "Offshore Development",
-    startDate: "2023",
-    technologies: [".NET WinForms", "IIS", "Node.js", "Desktop Application"],
+    startDate: "2025",
+    technologies: [".NET WinForms", "Desktop Application"],
     description:
       "Created an innovative desktop application ecosystem for managing and updating distributed kiosk machines across multiple deployment environments.",
     achievements: [
@@ -76,15 +94,10 @@ const projectsData = [
   },
   {
     title: "Traveler Registration Form Management System",
-    client: "RoomMatik",
+    client: ROOM_MATIK,
     type: "Offshore Development",
-    startDate: "2023",
-    technologies: [
-      ".NET Core Web API",
-      "PDF Generation",
-      "Digital Signing",
-      "Event-Driven Architecture",
-    ],
+    startDate: "2025",
+    technologies: [".NET Core Web API"],
     description:
       "Developed a comprehensive web service API to automate Spain's legal compliance requirements for traveler registration forms in hospitality and car rental industries.",
     achievements: [
@@ -100,10 +113,13 @@ const projectsData = [
 // Render Projects
 function renderProjects() {
   const container = document.getElementById("projectsContainer");
-  projectsData.forEach((project, index) => {
-    const card = document.createElement("div");
-    card.className = "project-card";
-    card.innerHTML = `
+  projectsData
+    .sort((a, b) => new Date(b.startDate) - new Date(a.startDate))
+
+    .forEach((project, index) => {
+      const card = document.createElement("div");
+      card.className = "project-card";
+      card.innerHTML = `
                     <div class="project-header">
                         <h3>${project.title}</h3>
                         <div class="project-meta">
@@ -121,15 +137,15 @@ function renderProjects() {
                             ${project.technologies
                               .map(
                                 (tech) =>
-                                  `<span class="tech-tag">${tech}</span>`
+                                  `<span class="tech-tag">${tech}</span>`,
                               )
                               .join("")}
                         </div>
                         <button class="btn btn-primary" onclick="openModal(${index})">View Details</button>
                     </div>
                 `;
-    container.appendChild(card);
-  });
+      container.appendChild(card);
+    });
 }
 
 // Modal Functions
@@ -153,7 +169,7 @@ function openModal(index) {
                     <div class="tech-stack">
                         ${project.technologies
                           .map(
-                            (tech) => `<span class="tech-tag">${tech}</span>`
+                            (tech) => `<span class="tech-tag">${tech}</span>`,
                           )
                           .join("")}
                     </div>
@@ -267,3 +283,19 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 
 // Initialize
 renderProjects();
+
+function calculateExperienceYears() {
+  const startYear = 2023;
+  const now = new Date();
+
+  const currentYear = now.getFullYear();
+  const currentMonth = now.getMonth() + 1;
+
+  if (currentMonth <= 6) {
+    return currentYear - startYear;
+  } else {
+    return currentYear - startYear + 0.5;
+  }
+}
+document.getElementById("experience").textContent =
+  `${calculateExperienceYears()}+`;
