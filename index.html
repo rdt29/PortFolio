@@ -5,6 +5,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rajdeep Tiwari - Software Engineer</title>
+  <meta name="description" content="Rajdeep Tiwari - Software Engineer and .NET Developer specializing in enterprise solutions, full-stack development, and cloud architecture.">
+  <meta name="author" content="Rajdeep Tiwari">
+  <meta name="keywords" content="Rajdeep Tiwari, Software Engineer, .NET Developer, .NET Core, C#, Azure, Full Stack Developer, Portfolio">
+  <meta name="theme-color" content="#05070d">
+  <link rel="canonical" href="https://portfolio.rdtapps.com/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://portfolio.rdtapps.com/">
+  <meta property="og:title" content="Rajdeep Tiwari - Software Engineer">
+  <meta property="og:description" content="Software Engineer and .NET Developer specializing in enterprise solutions, full-stack development, and cloud architecture.">
+  <meta property="og:image" content="https://portfolio.rdtapps.com/og-preview.png">
+  <meta property="og:image:secure_url" content="https://portfolio.rdtapps.com/og-preview.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Rajdeep Tiwari - Software Engineer portfolio preview">
+  <meta property="og:site_name" content="Rajdeep Tiwari Portfolio">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://portfolio.rdtapps.com/">
+  <meta name="twitter:title" content="Rajdeep Tiwari - Software Engineer">
+  <meta name="twitter:description" content="Software Engineer and .NET Developer specializing in enterprise solutions, full-stack development, and cloud architecture.">
+  <meta name="twitter:image" content="https://portfolio.rdtapps.com/og-preview.png">
+  <meta name="twitter:image:alt" content="Rajdeep Tiwari - Software Engineer portfolio preview">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <link rel="stylesheet" href="style.css">
@@ -12,15 +36,26 @@
 </head>
 
 <body>
+  <div class="site-bg" aria-hidden="true">
+    <span class="aurora aurora-one"></span>
+    <span class="aurora aurora-two"></span>
+    <span class="aurora aurora-three"></span>
+    <span class="noise"></span>
+  </div>
   <div class="cursor-dot"></div>
 
   <nav>
-    <div class="logo">RT</div>
+    <a href="#home" class="logo" aria-label="Rajdeep Tiwari home">RT</a>
+    <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span>
+      <span></span>
+    </button>
     <ul class="nav-links">
       <li><a href="#home">Home</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#experience">Experience</a></li>
+      <li><a href="Rajdeep_Tiwari_Dotnet_Resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
@@ -31,13 +66,14 @@
       <h2>Software Engineer | .NET Developer</h2>
       <p class="hero-desc">
         Results-driven Software Engineer with
-        <span id="experience"></span> years of expertise in enterprise solutions,
+        <span id="experienceYears"></span> years of expertise in enterprise solutions,
         full-stack development, and cloud architecture. Specialized in building scalable applications
         for Fortune 500 companies and international clients.
       </p>
 
       <div class="cta-buttons">
         <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="Rajdeep_Tiwari_Dotnet_Resume.pdf" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">View Resume</a>
         <a href="#contact" class="btn btn-secondary">Get In Touch</a>
       </div>
     </div>
@@ -104,7 +140,7 @@
     <div class="container">
       <div class="contact-content">
         <h2 class="section-title">Let's Connect</h2>
-        <p style="color: var(--gray); font-size: 1.2rem; margin-bottom: 2rem;">
+        <p class="contact-lead">
           I'm always open to discussing new projects, creative ideas, or opportunities.
         </p>
         <div class="contact-info">
