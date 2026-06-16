@@ -6,43 +6,11 @@ const BEFREE = "BeFree";
 const GIFTCITY = "Gujarat International Finance Tec-City (GIFT City)";
 const projectsData = [
   {
-    title: "Contract Management System",
-    client: CHENIERE,
-    type: "Offshore Development",
-    startDate: "2024",
-    technologies: [".NET Framework 4.5.1", ".NET Core 8", "Azure DevOps"],
-    description:
-      "Architected and developed a comprehensive contract management system for a Fortune 500 energy company, managing multi-million dollar cargo contracts and commodity-based agreements.",
-    achievements: [
-      "Dual Contract Management: Architected system to handle both third-party integrated contracts and native system-based contracts",
-      "Third-Party Integration: Implemented seamless data synchronization with external cargo tracking systems, reducing manual data entry by 80%",
-      "Automated Notification System: Developed intelligent reminder system improving adherence by 90%",
-      "Legacy Migration: Successfully migrated from .NET Framework 4.5.1 to .NET Core 8, improving performance by 50%",
-      "DevOps Implementation: Established Azure DevOps CI/CD pipelines reducing deployment time from hours to minutes",
-    ],
-  },
-  {
-    title: "GIFTCity Power Management System",
-    client: GIFTCITY,
-    type: "Government Project",
-    startDate: "2023",
-    technologies: [".NET Core", "MySQL", "Payment Gateway", "SMS Integration"],
-    description:
-      "Developed a comprehensive power management system for India's premier financial hub, streamlining electricity services for businesses and residents.",
-    achievements: [
-      "Service Consolidation: Unified multiple microservices into a single comprehensive API",
-      "Document Management: Engineered multi-document submission capability reducing processing time by 40%",
-      "Billing Automation: Built end-to-end automated billing module with email and SMS notifications",
-      "Payment Integration: Integrated secure payment gateway increasing collection efficiency by 35%",
-      "Role-Based Access Control: Implemented sophisticated authentication system for multiple user hierarchies",
-      "Automated Document Generation: Developed automated PDF generation system for technical sanctions, monthly bills and demand estimates, eliminating manual processes and ensuring accuracy ",
-    ],
-  },
-  {
     title: "Cheniere Capacity Loss Evaluation and Reporting",
     client: CHENIERE,
     type: "Offshore Development",
-    startDate: "2025",
+    startDate: "September 2025",
+    endDate: "Present",
     technologies: [".NET Core", "MySQL", "PI System", "Denodo", "Maximo"],
     description:
       "Analytics application built on .NET Core and SQL Server for a Fortune 500 energy company, integrating PI, Denodo, and Maximo to track capacity loss and performance across facilities.",
@@ -59,7 +27,8 @@ const projectsData = [
     title: "Custom Identity Provider (SSO Solution)",
     client: BEFREE,
     type: "Enterprise Authentication",
-    startDate: "2025",
+    startDate: "June 2025",
+    endDate: "September 2025",
     technologies: [
       ".NET Core",
       "React.js",
@@ -81,7 +50,8 @@ const projectsData = [
     title: "Kiosk Management & Auto-Update System",
     client: ROOM_MATIK,
     type: "Offshore Development",
-    startDate: "2025",
+    startDate: "March 2025",
+    endDate: "June 2025",
     technologies: [".NET WinForms", "Desktop Application"],
     description:
       "Created an innovative desktop application ecosystem for managing and updating distributed kiosk machines across multiple deployment environments.",
@@ -96,7 +66,8 @@ const projectsData = [
     title: "Traveler Registration Form Management System",
     client: ROOM_MATIK,
     type: "Offshore Development",
-    startDate: "2025",
+    startDate: "January 2025",
+    endDate: "March 2025",
     technologies: [".NET Core Web API"],
     description:
       "Developed a comprehensive web service API to automate Spain's legal compliance requirements for traveler registration forms in hospitality and car rental industries.",
@@ -108,9 +79,49 @@ const projectsData = [
       "Scalable Architecture: Designed system to handle high-volume concurrent requests from multiple establishments",
     ],
   },
+  {
+    title: "Contract Management System",
+    client: CHENIERE,
+    type: "Offshore Development",
+    startDate: "June 2024",
+    endDate: "January 2025",
+    technologies: [".NET Framework 4.5.1", ".NET Core 8", "Azure DevOps"],
+    description:
+      "Architected and developed a comprehensive contract management system for a Fortune 500 energy company, managing multi-million dollar cargo contracts and commodity-based agreements.",
+    achievements: [
+      "Dual Contract Management: Architected system to handle both third-party integrated contracts and native system-based contracts",
+      "Third-Party Integration: Implemented seamless data synchronization with external cargo tracking systems, reducing manual data entry by 80%",
+      "Automated Notification System: Developed intelligent reminder system improving adherence by 90%",
+      "Legacy Migration: Successfully migrated from .NET Framework 4.5.1 to .NET Core 8, improving performance by 50%",
+      "DevOps Implementation: Established Azure DevOps CI/CD pipelines reducing deployment time from hours to minutes",
+    ],
+  },
+  {
+    title: "GIFTCity Power Management System",
+    client: GIFTCITY,
+    type: "Government Project",
+    startDate: "June 2023",
+    endDate: "June 2024",
+    technologies: [".NET Core", "MySQL", "Payment Gateway", "SMS Integration"],
+    description:
+      "Developed a comprehensive power management system for India's premier financial hub, streamlining electricity services for businesses and residents.",
+    achievements: [
+      "Service Consolidation: Unified multiple microservices into a single comprehensive API",
+      "Document Management: Engineered multi-document submission capability reducing processing time by 40%",
+      "Billing Automation: Built end-to-end automated billing module with email and SMS notifications",
+      "Payment Integration: Integrated secure payment gateway increasing collection efficiency by 35%",
+      "Role-Based Access Control: Implemented sophisticated authentication system for multiple user hierarchies",
+      "Automated Document Generation: Developed automated PDF generation system for technical sanctions, monthly bills and demand estimates, eliminating manual processes and ensuring accuracy ",
+    ],
+  },
 ];
 
-const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const prefersReducedMotion = window.matchMedia(
+  "(prefers-reduced-motion: reduce)",
+).matches;
+const prefersMobilePerformance = window.matchMedia(
+  "(max-width: 768px), (pointer: coarse)",
+).matches;
 
 function escapeHtml(value) {
   return String(value)
@@ -121,27 +132,30 @@ function escapeHtml(value) {
     .replace(/'/g, "&#039;");
 }
 
+function getProjectDateRange(project) {
+  return `${project.startDate} - ${project.endDate}`;
+}
+
 function renderProjects() {
   const container = document.getElementById("projectsContainer");
   if (!container) return;
 
   container.innerHTML = "";
 
-  projectsData
-    .sort((a, b) => new Date(b.startDate) - new Date(a.startDate))
-    .forEach((project, index) => {
-      const card = document.createElement("article");
-      card.className = "project-card";
-      card.tabIndex = 0;
-      card.setAttribute("role", "button");
-      card.setAttribute("aria-label", `View details for ${project.title}`);
-      card.innerHTML = `
+  projectsData.forEach((project, index) => {
+    const dateRange = getProjectDateRange(project);
+    const card = document.createElement("article");
+    card.className = "project-card";
+    card.tabIndex = 0;
+    card.setAttribute("role", "button");
+    card.setAttribute("aria-label", `View details for ${project.title}`);
+    card.innerHTML = `
         <div class="project-header">
           <h3>${escapeHtml(project.title)}</h3>
           <div class="project-meta">
             <span>${escapeHtml(project.type)}</span>
             <span aria-hidden="true">&bull;</span>
-            <span>${escapeHtml(project.startDate)}</span>
+            <span>${escapeHtml(dateRange)}</span>
           </div>
         </div>
         <div class="project-content">
@@ -149,22 +163,24 @@ function renderProjects() {
           <p class="project-desc">${escapeHtml(project.description)}</p>
           <div class="tech-stack">
             ${project.technologies
-              .map((tech) => `<span class="tech-tag">${escapeHtml(tech)}</span>`)
+              .map(
+                (tech) => `<span class="tech-tag">${escapeHtml(tech)}</span>`,
+              )
               .join("")}
           </div>
           <button class="btn btn-primary" type="button">View Details</button>
         </div>
       `;
 
-      card.addEventListener("click", () => openModal(index));
-      card.addEventListener("keydown", (event) => {
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-          openModal(index);
-        }
-      });
-      container.appendChild(card);
+    card.addEventListener("click", () => openModal(index));
+    card.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openModal(index);
+      }
     });
+    container.appendChild(card);
+  });
 }
 
 function openModal(index) {
@@ -172,11 +188,12 @@ function openModal(index) {
   const modal = document.getElementById("projectModal");
   const modalContent = document.getElementById("modalContent");
   if (!project || !modal || !modalContent) return;
+  const dateRange = getProjectDateRange(project);
 
   modalContent.innerHTML = `
     <h2 class="modal-title">${escapeHtml(project.title)}</h2>
     <div class="modal-meta">
-      ${escapeHtml(project.client)} | ${escapeHtml(project.type)} | ${escapeHtml(project.startDate)}
+      ${escapeHtml(project.client)} | ${escapeHtml(project.type)} | ${escapeHtml(dateRange)}
     </div>
     <p class="modal-desc">${escapeHtml(project.description)}</p>
     <div class="modal-section">
@@ -201,7 +218,11 @@ function openModal(index) {
   document.body.style.overflow = "hidden";
   modal.querySelector(".close-modal").focus();
 
-  if (!prefersReducedMotion) {
+  if (
+    !prefersReducedMotion &&
+    !prefersMobilePerformance &&
+    typeof gsap !== "undefined"
+  ) {
     gsap.fromTo(
       ".modal-content",
       { scale: 0.94, opacity: 0, y: 24 },
@@ -236,7 +257,9 @@ function setupNavigation() {
   const nav = document.querySelector("nav");
   const toggle = document.querySelector(".nav-toggle");
   const links = document.querySelector(".nav-links");
-  const anchors = document.querySelectorAll('.nav-links a[href^="#"], .logo[href^="#"]');
+  const anchors = document.querySelectorAll(
+    '.nav-links a[href^="#"], .logo[href^="#"]',
+  );
   const sections = [...document.querySelectorAll("section[id]")];
 
   function closeMenu() {
@@ -255,14 +278,29 @@ function setupNavigation() {
       if (!target) return;
 
       event.preventDefault();
-      target.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "start" });
+      target.scrollIntoView({
+        behavior:
+          prefersReducedMotion || prefersMobilePerformance ? "auto" : "smooth",
+        block: "start",
+      });
       closeMenu();
     });
   });
 
-  window.addEventListener("scroll", () => {
-    nav?.classList.toggle("scrolled", window.scrollY > 12);
-  }, { passive: true });
+  let ticking = false;
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (ticking) return;
+
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        nav?.classList.toggle("scrolled", window.scrollY > 12);
+        ticking = false;
+      });
+    },
+    { passive: true },
+  );
 
   const observer = new IntersectionObserver(
     (entries) => {
@@ -270,7 +308,10 @@ function setupNavigation() {
         if (!entry.isIntersecting) return;
 
         document.querySelectorAll(".nav-links a").forEach((link) => {
-          link.classList.toggle("active", link.getAttribute("href") === `#${entry.target.id}`);
+          link.classList.toggle(
+            "active",
+            link.getAttribute("href") === `#${entry.target.id}`,
+          );
         });
       });
     },
@@ -281,7 +322,12 @@ function setupNavigation() {
 }
 
 function setupAnimations() {
-  if (prefersReducedMotion || typeof gsap === "undefined") return;
+  if (
+    prefersReducedMotion ||
+    prefersMobilePerformance ||
+    typeof gsap === "undefined"
+  )
+    return;
 
   gsap.registerPlugin(ScrollTrigger);
 
@@ -351,33 +397,42 @@ function setupAnimations() {
     });
   });
 
-  gsap.utils.toArray(".skill-card, .project-card, .experience, .contact-content").forEach((item, index) => {
-    gsap.from(item, {
-      scrollTrigger: {
-        trigger: item,
-        start: "top 84%",
-      },
-      opacity: 0,
-      y: 44,
-      scale: 0.98,
-      duration: 0.75,
-      delay: (index % 3) * 0.08,
-      ease: "power3.out",
-    });
-  });
-
-  document.querySelectorAll(".project-card, .skill-card, .contact-item").forEach((card) => {
-    card.addEventListener("pointermove", (event) => {
-      const rect = card.getBoundingClientRect();
-      const x = ((event.clientX - rect.left) / rect.width - 0.5) * 8;
-      const y = ((event.clientY - rect.top) / rect.height - 0.5) * -8;
-      gsap.to(card, { rotateX: y, rotateY: x, transformPerspective: 900, duration: 0.35 });
+  gsap.utils
+    .toArray(".skill-card, .project-card, .experience, .contact-content")
+    .forEach((item, index) => {
+      gsap.from(item, {
+        scrollTrigger: {
+          trigger: item,
+          start: "top 84%",
+        },
+        opacity: 0,
+        y: 44,
+        scale: 0.98,
+        duration: 0.75,
+        delay: (index % 3) * 0.08,
+        ease: "power3.out",
+      });
     });
 
-    card.addEventListener("pointerleave", () => {
-      gsap.to(card, { rotateX: 0, rotateY: 0, duration: 0.35 });
+  document
+    .querySelectorAll(".project-card, .skill-card, .contact-item")
+    .forEach((card) => {
+      card.addEventListener("pointermove", (event) => {
+        const rect = card.getBoundingClientRect();
+        const x = ((event.clientX - rect.left) / rect.width - 0.5) * 8;
+        const y = ((event.clientY - rect.top) / rect.height - 0.5) * -8;
+        gsap.to(card, {
+          rotateX: y,
+          rotateY: x,
+          transformPerspective: 900,
+          duration: 0.35,
+        });
+      });
+
+      card.addEventListener("pointerleave", () => {
+        gsap.to(card, { rotateX: 0, rotateY: 0, duration: 0.35 });
+      });
     });
-  });
 }
 
 function setupModalEvents() {

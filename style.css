@@ -658,11 +658,16 @@ section {
 .achievements {
   list-style: none;
   margin-top: 1rem;
+  display: grid;
+  gap: 0.65rem;
 }
 
 .achievements li {
-  padding: 0.7rem 0 0.7rem 1.65rem;
+  padding: 0.8rem 0.9rem 0.8rem 2.35rem;
   position: relative;
+  border: 1px solid rgba(156, 181, 255, 0.12);
+  border-radius: var(--radius);
+  background: rgba(5, 9, 18, 0.58);
   color: var(--muted);
   font-size: 0.95rem;
 }
@@ -670,8 +675,8 @@ section {
 .achievements li::before {
   content: "\2713";
   position: absolute;
-  left: 0;
-  top: 0.7rem;
+  left: 0.85rem;
+  top: 0.8rem;
   color: var(--accent);
   font-weight: 900;
 }
@@ -805,11 +810,11 @@ footer {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.72);
+  background: rgba(2, 5, 12, 0.88);
   z-index: 2000;
   overflow-y: auto;
   padding: 2rem;
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(24px);
 }
 
 .modal-content {
@@ -819,11 +824,16 @@ footer {
   overflow-y: auto;
   border-radius: var(--radius);
   padding: clamp(1.5rem, 4vw, 3rem);
+  background:
+    linear-gradient(180deg, rgba(18, 27, 45, 0.98), rgba(8, 13, 24, 0.98)),
+    var(--bg-soft);
+  box-shadow: 0 36px 120px rgba(0, 0, 0, 0.72);
 }
 
 .modal-title {
   color: var(--light);
   margin-bottom: 1rem;
+  padding-right: 3.6rem;
   font-size: clamp(1.6rem, 4vw, 2.5rem);
   line-height: 1.12;
 }
@@ -928,15 +938,48 @@ footer {
 @media (max-width: 768px) {
   :root {
     --nav-height: 72px;
+    --shadow: 0 16px 36px rgba(0, 0, 0, 0.36);
+    --glow: 0 0 18px rgba(117, 228, 255, 0.16);
   }
 
   .cursor-dot {
     display: none;
   }
 
+  html {
+    scroll-behavior: auto;
+  }
+
+  body {
+    text-rendering: optimizeSpeed;
+  }
+
+  body::before {
+    background-size: 72px 72px;
+    mask-image: none;
+    opacity: 0.45;
+  }
+
+  .site-bg {
+    background:
+      radial-gradient(circle at 35% 8%, rgba(117, 228, 255, 0.1), transparent 36%),
+      linear-gradient(180deg, #05070d 0%, #080b14 58%, #05070d 100%);
+  }
+
+  .aurora {
+    display: none;
+  }
+
+  .noise {
+    opacity: 0.08;
+    animation: none;
+  }
+
   nav {
     width: calc(100% - 24px);
     padding: 0.55rem;
+    backdrop-filter: none;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.36);
   }
 
   .nav-toggle {
@@ -954,7 +997,7 @@ footer {
     border: 1px solid var(--line);
     border-radius: var(--radius);
     background: rgba(6, 10, 19, 0.94);
-    backdrop-filter: blur(20px);
+    backdrop-filter: none;
     opacity: 0;
     pointer-events: none;
     transform: translateY(-10px);
@@ -981,6 +1024,49 @@ footer {
     padding-top: 7rem;
   }
 
+  .hero::before {
+    animation: none;
+    opacity: 0.55;
+  }
+
+  .hero h1 {
+    animation: none;
+  }
+
+  .btn::before,
+  .skill-card::before,
+  .project-card::before,
+  .experience::before,
+  .contact-content::before,
+  .modal-content::before,
+  .project-header::after {
+    display: none;
+  }
+
+  .skill-card,
+  .project-card,
+  .experience,
+  .contact-content,
+  .modal-content {
+    backdrop-filter: none;
+  }
+
+  .skill-card:hover,
+  .project-card:hover,
+  .contact-item:hover,
+  .btn:hover {
+    transform: none;
+  }
+
+  .project-card:hover,
+  .skill-card:hover {
+    box-shadow: var(--shadow);
+  }
+
+  .modal {
+    backdrop-filter: none;
+  }
+
   .skills-grid,
   .projects-grid,
   .contact-info {
@@ -994,7 +1080,13 @@ footer {
 
 @media (max-width: 480px) {
   .hero h1 {
-    font-size: clamp(3.1rem, 18vw, 4.1rem);
+    font-size: clamp(2.35rem, 12.4vw, 4.1rem);
+    white-space: nowrap;
+  }
+
+  .hero h2 {
+    font-size: clamp(0.92rem, 4.15vw, 1.2rem);
+    white-space: nowrap;
   }
 
   .cta-buttons,
@@ -1003,7 +1095,30 @@ footer {
   }
 
   .modal {
-    padding: 1rem;
+    padding: 0.85rem;
+    background: rgba(2, 5, 12, 0.94);
+  }
+
+  .modal-content {
+    max-height: calc(100svh - 1.7rem);
+    margin: 0;
+    padding: 4.4rem 1.15rem 1.35rem;
+    background:
+      linear-gradient(180deg, rgba(18, 27, 45, 0.99), rgba(8, 13, 24, 0.99)),
+      var(--bg-soft);
+  }
+
+  .modal-title {
+    padding-right: 0;
+    font-size: 1.45rem;
+    line-height: 1.2;
+  }
+
+  .close-modal {
+    top: 0.95rem;
+    right: 0.95rem;
+    background: rgba(5, 10, 20, 0.94);
+    border-color: rgba(117, 228, 255, 0.34);
   }
 }
 
