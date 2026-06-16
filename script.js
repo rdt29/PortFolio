@@ -183,6 +183,7 @@ function renderProjects() {
   });
 }
 
+// Modal Functions
 function openModal(index) {
   const project = projectsData[index];
   const modal = document.getElementById("projectModal");
@@ -239,9 +240,9 @@ function closeModal() {
   document.body.style.overflow = "";
 }
 
-function calculateExperienceYears() {
-  const startYear = 2023;
-  const now = new Date();
+document.querySelector(".close-modal").addEventListener("click", () => {
+  document.getElementById("projectModal").style.display = "none";
+});
 
   const currentYear = now.getFullYear();
   const currentMonth = now.getMonth() + 1;
@@ -351,37 +352,22 @@ function setupAnimations() {
 
   gsap.from(".hero h2", {
     opacity: 0,
-    y: 36,
-    duration: 0.9,
-    delay: 0.32,
-    ease: "power3.out",
+    y: 50,
+    duration: 0.6,
+    delay: i * 0.1,
   });
+});
 
-  gsap.from(".hero-desc", {
-    opacity: 0,
-    y: 28,
-    duration: 0.9,
-    delay: 0.44,
-    ease: "power3.out",
-  });
-
-  gsap.from(".cta-buttons", {
-    opacity: 0,
-    y: 24,
-    duration: 0.8,
-    delay: 0.56,
-    ease: "power3.out",
-  });
-
-  gsap.to(".hero .container", {
-    yPercent: -8,
-    ease: "none",
+gsap.utils.toArray(".project-card").forEach((card, i) => {
+  gsap.from(card, {
     scrollTrigger: {
-      trigger: ".hero",
-      start: "top top",
-      end: "bottom top",
-      scrub: true,
+      trigger: card,
+      start: "top 80%",
     },
+    opacity: 0,
+    scale: 0.8,
+    duration: 0.6,
+    delay: i * 0.1,
   });
 
   gsap.utils.toArray(".section-title").forEach((title) => {
@@ -444,25 +430,23 @@ function setupModalEvents() {
       closeModal();
     }
   });
+});
 
-  window.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      closeModal();
-    }
-  });
-}
+// Initialize
+renderProjects();
 
-function initialize() {
-  renderProjects();
+function calculateExperienceYears() {
+  const startYear = 2023;
+  const now = new Date();
 
-  const experienceYears = document.getElementById("experienceYears");
-  if (experienceYears) {
-    experienceYears.textContent = `${calculateExperienceYears()}+`;
+  const currentYear = now.getFullYear();
+  const currentMonth = now.getMonth() + 1;
+
+  if (currentMonth <= 6) {
+    return currentYear - startYear;
+  } else {
+    return currentYear - startYear + 0.5;
   }
-
-  setupNavigation();
-  setupModalEvents();
-  setupAnimations();
 }
-
-initialize();
+document.getElementById("experience").textContent =
+  `${calculateExperienceYears()}+`;
